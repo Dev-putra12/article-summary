@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import ChatWindow from './components/ChatWindow';
 import ChatInput from './components/ChatInput';
 
-export default function BartPage() {
+export default function MbartPage() {
   const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([
     { text: "Hey! How's it going?", isUser: false },
   ]);
@@ -40,14 +41,18 @@ export default function BartPage() {
     <div className="flex flex-col h-screen bg-[#212121]">
       <header className="border-b border-gray-800 p-2">
         <div className="max-w-full mx-auto flex items-center justify-between px-5">
-          <h1 className="text-white font-semibold">BART Article Text Summarizer</h1>
+          <h1 className="text-white font-semibold">MBART Article Text Summarizer</h1>
           <div className="flex gap-4">
-            <button className="px-5 py-1 text-sm text-black bg-white rounded-3xl ">
+          <Link href="/bart">
+          <button className="px-5 py-1 text-sm text-white bg-transparent hover:bg-[#303030] rounded-3xl outline-none outline-white">
               BART
             </button>
-            <button className="px-5 py-1 text-sm text-white bg-transparent hover:bg-[#303030] rounded-3xl outline-none outline-white">
+          </Link>
+          <Link href="/mbart">
+            <button className="px-5 py-1 text-sm text-black bg-white rounded-3xl ">
               mBART
             </button>
+          </Link>
           </div>
         </div>
       </header>

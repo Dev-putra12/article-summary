@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Deep Learning text summarization",
+  title: "Article Text Summarization",
   description: "Tugas Besar implementasi model deep learning untuk text summarization dengan next.js",
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BartLayout({
+export default function MbartLayout({
   children,
 }: {
   children: React.ReactNode

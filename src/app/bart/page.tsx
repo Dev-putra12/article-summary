@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import ChatWindow from './components/ChatWindow';
 import ChatInput from './components/ChatInput';
 
@@ -42,12 +43,16 @@ export default function BartPage() {
         <div className="max-w-full mx-auto flex items-center justify-between px-5">
           <h1 className="text-white font-semibold">BART Article Text Summarizer</h1>
           <div className="flex gap-4">
+            <Link href="/bart">
             <button className="px-5 py-1 text-sm text-black bg-white rounded-3xl ">
               BART
             </button>
+            </Link>
+            <Link href="/mbart">
             <button className="px-5 py-1 text-sm text-white bg-transparent hover:bg-[#303030] rounded-3xl outline-none outline-white">
               mBART
             </button>
+            </Link>
           </div>
         </div>
       </header>
