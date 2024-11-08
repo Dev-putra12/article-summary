@@ -7,7 +7,7 @@ import ChatInput from './components/ChatInput';
 
 export default function BartPage() {
   const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([
-    { text: "Hey! How's it going?", isUser: false },
+    { text: "Halo! Anda sedang menggunakan article text summarization dengan model BART", isUser: false },
   ]);
 
   const handleSendMessage = async (message: string) => {

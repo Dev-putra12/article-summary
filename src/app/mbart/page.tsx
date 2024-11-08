@@ -7,7 +7,7 @@ import ChatInput from './components/ChatInput';
 
 export default function MbartPage() {
   const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([
-    { text: "Hey! How's it going?", isUser: false },
+    { text: "Halo! Anda sedang menggunakan article text summarization dengan model mBART", isUser: false },
   ]);
 
   const handleSendMessage = async (message: string) => {
