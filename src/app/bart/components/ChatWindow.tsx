@@ -12,7 +12,7 @@ interface ChatWindowProps {
 
 const ChatWindow: React.FC<ChatWindowProps> = ({ messages }) => {
   return (
-    <div className="flex-grow overflow-auto p-6">
+    <div className="flex flex-col">
       {messages.map((message, index) => (
         <ChatMessage key={index} message={message.text} isUser={message.isUser} />
       ))}
