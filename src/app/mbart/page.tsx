@@ -6,17 +6,50 @@ import ChatWindow from './components/ChatWindow';
 import ChatInput from './components/ChatInput';
 
 export default function MbartPage() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
   const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([
     { text: "Halo! Anda sedang menggunakan article text summarization dengan model mBART", isUser: false },
   ]);
 
+  interface mBartResponse {
+    summary?: string;
+    error?: string;
+  }
+
   const handleSendMessage = async (message: string) => {
-    setMessages(prev => [...prev, { text: message, isUser: true }]);
-    
-    // Simulasi respons dari API (ganti dengan panggilan API asli nanti)
-    setTimeout(() => {
-      setMessages(prev => [...prev, { text: `Respons untuk: ${message}`, isUser: false }]);
-    }, 1000);
+    try {
+      setMessages(prev => [...prev, { text: message, isUser: true }]);
+      setMessages(prev => [...prev, { text: "Sedang memproses...", isUser: false }]);
+  
+      const response = await fetch(`${API_URL}/mbart-summarize`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: message }),
+      });
+  
+      const data: mBartResponse = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.error || 'Terjadi kesalahan');
+      }
+  
+      setMessages(prev => {
+        const newMessages = prev.slice(0, -1);
+        return [...newMessages, { text: data.summary!, isUser: false }];
+      });
+  
+    } catch (error) {
+      console.error('Error:', error);
+      setMessages(prev => {
+        const newMessages = prev.slice(0, -1);
+        return [...newMessages, { 
+          text: error instanceof Error ? error.message : 'Terjadi kesalahan tidak diketahui', 
+          isUser: false 
+        }];
+      });
+    }
   };
     
     // Uncomment dan sesuaikan kode di bawah ini ketika Anda siap mengintegrasikan dengan API Flask
